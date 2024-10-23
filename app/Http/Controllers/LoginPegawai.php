@@ -43,7 +43,7 @@ class LoginPegawai extends Controller
         $this->data['title'] = 'Dashboard';
 
         $this->data['c_artikel'] = $this->counter_artikel_pegawai();
-        $this->data['c_diskusi'] = $this->counter_diskusi_pegawai();
+        $this->data['c_notulen'] = $this->counter_notulen_pegawai();
         $this->data['c_komentar'] = $this->counter_komentar_pegawai();
         $this->data['c_viewer'] = $this->counter_viewer_pegawai();
         //GRAPH
@@ -176,9 +176,9 @@ class LoginPegawai extends Controller
 
         return $data;
     }
-    public function counter_diskusi_pegawai()
+    public function counter_notulen_pegawai()
     {
-        $data = Diskusi::select('*')->where('author_id', Auth::user()->id)->count();
+        $data = Notulen::select('*')->where('author_id', Auth::user()->id)->count();
 
         return $data;
     }

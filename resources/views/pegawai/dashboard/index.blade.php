@@ -26,8 +26,8 @@
           <div class="col-xl-3 col-sm-6">
             <div class="card card-mini mb-4">
               <div class="card-body">
-                <h2 class="mb-1">{{$c_diskusi}}</h2>
-                <p>Diskusi</p>
+                <h2 class="mb-1">{{$c_notulen}}</h2>
+                <p>Notulensi</p>
                 <div class="chartjs-wrapper">
                   <canvas id="area-chart"></canvas>
                 </div>
