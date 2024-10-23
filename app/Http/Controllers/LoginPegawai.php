@@ -26,6 +26,10 @@ class LoginPegawai extends Controller
     {
         $this->middleware('auth');
         $this->middleware('is_pegawai');
+        $this->data['c_artikel'] = $this->counter_post();
+        $this->data['c_diskusi'] = $this->counter_diskusi();
+        $this->data['c_user'] = $this->counter_user();
+        $this->data['c_departemen'] = $this->counter_departemen();
 
     }
 

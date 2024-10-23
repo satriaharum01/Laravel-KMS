@@ -10,11 +10,9 @@ use App\Models\Lampiran;
 use App\Models\Log;
 use App\Models\Notulen;
 use App\Models\User;
-
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Pagination\Paginator;
-
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +34,7 @@ class Diskusilivewire extends Component
             $sub_query->where('judul', 'like', '%' . $this->searchTerm . '%');
         })->orderBy('created_at', 'DESC')->Paginate(10);
 
-        foreach($load as $row) {
+        foreach ($load as $row) {
             $row->author = $row->cari_author->name;
             $row->time = date('h:', strtotime($row->tanggal)) . date('i', strtotime($row->tanggal));
             $row->tanggal = date('d ', strtotime($row->tanggal)) . $this->bulan[date('n', strtotime($row->tanggal))] .  date(' Y', strtotime($row->tanggal));
@@ -83,7 +81,7 @@ class Diskusilivewire extends Component
 
         return $data;
     }
-    
+
     public function counter_diskusi()
     {
         $data = Diskusi::select('*')->count();
