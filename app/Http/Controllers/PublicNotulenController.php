@@ -64,7 +64,7 @@ class PublicNotulenController extends Controller
         return redirect(url($request->url));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $rows = Notulen::findOrFail($id);
         $rows->delete();

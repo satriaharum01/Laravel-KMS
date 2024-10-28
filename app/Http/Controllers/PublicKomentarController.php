@@ -63,7 +63,7 @@ class PublicKomentarController extends Controller
         return redirect(url($request->url));
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $this->buat_notif('Menghapus '.strtolower($this->data['title']), 'mdi-delete', 'danger');
         $rows = Komentar::findOrFail($id);

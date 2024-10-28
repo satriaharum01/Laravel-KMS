@@ -56,10 +56,12 @@
                                     <span role="button" class="d-block text-sm btn-edit text-success" data-id="{{$cek->id}}"><i class="fa fa-edit"></i></span> 
                                 </div>
                                 <div class="col px-1">
-                                <span role="button" class="d-block text-sm btn-hapus text-danger" data-id="{{$cek->id}}" data-handler="data" href="<?= url($page.'/delete') ?>/{{$cek->id}}">
+                                <span role="button" class="d-block text-sm btn-hapus text-danger" data-id="{{$cek->id}}" data-handler="data">
                                 <i class="fa fa-trash"></i></span>
 					            <form id="delete-form-{{$cek->id}}-data" action="<?= url($page.'/delete') ?>/{{$cek->id}}" 
-                                method="GET" style="display: none;">
+                                method="POST" style="display: none;">
+                                @csrf
+						        <input name="url" type="text" class="form-control" hidden readonly value="{{url()->current()}}">
                                 </form>
                                 </div>
                             </div>

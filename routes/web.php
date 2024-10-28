@@ -105,8 +105,8 @@ Route::POST('/pegawai/notulen/update/{id}', [App\Http\Controllers\PublicNotulenC
 
 //DESTROY
 Route::GET('/pegawai/artikel/delete/{id}', [App\Http\Controllers\PublicArtikelController::class, 'destroy']);
-Route::GET('/pegawai/komentar/delete/{id}', [App\Http\Controllers\PublicKomentarController::class, 'destroy']);
-Route::GET('/pegawai/notulen/delete/{id}', [App\Http\Controllers\PublicNotulenController::class, 'destroy']);
+Route::POST('/pegawai/komentar/delete/{id}', [App\Http\Controllers\PublicKomentarController::class, 'destroy']);
+Route::POST('/pegawai/notulen/delete/{id}', [App\Http\Controllers\PublicNotulenController::class, 'destroy']);
 
 //JSON
 Route::get('/pegawai/artikel/json', [App\Http\Controllers\PublicArtikelController::class, 'json']);
