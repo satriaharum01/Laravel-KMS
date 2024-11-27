@@ -37,7 +37,7 @@
 							<tr>
 								<th style="text-align:center;" width="7%">No</th>
 								<th style="text-align:center;" width="">Artikel</th>
-								<th style="text-align:center;" width="15%">Aksi</th>
+								<th style="text-align:center;" width="20%">Aksi</th>
 							</tr>
 						</thead>
                         <tbody style="text-align:center;">
@@ -75,7 +75,8 @@
                     orderable: false,
                     searchable: false,
                     render: function(data, type, row) {
-                        return '<button type="button" class="btn btn-success btn-edit" data-id="' + data + '"><i class="fa fa-edit"></i></button>\
+                        return '<a href="{{url("/public/archive/download/")}}/'+data+'" class="btn btn-primary btn-artikel" ><i class="fa fa-download icon-1x"></i></a>\
+                        <button type="button" class="btn btn-success btn-edit" data-id="' + data + '"><i class="fa fa-edit"></i></button>\
                         <a class="btn btn-danger btn-hapus" data-id="' + data + '" data-handler="data" href="<?= url($page.'/delete') ?>/' + data + '">\
                         <i class="fa fa-trash"></i></a> \
 					    <form id="delete-form-' + data + '-data" action="<?= url($page.'/delete') ?>/' + data + '" \

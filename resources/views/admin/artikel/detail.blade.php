@@ -36,8 +36,7 @@
                     <div class="modal-body col-md-6 pb-0">
                         <div class="form-group">
                             <label>Author</label>
-                            <select name="author_id" id="author_id" class="form-control">
-                                <option value="0">-- Pilih Author</option>
+                            <select name="author_id" id="author_id" class="form-control" readonly>
                             </select>
                         </div>
                     </div>
@@ -54,6 +53,10 @@
                             <label>Isi</label>
                             <textarea name="content" class="form-control" placeholder="Tulis isi artikel disini.." required>{{$load->content ?? ''}}</textarea>
                         </div>
+					    <div class="form-group">
+					    	<label>Lampiran </label><span class="text-sm"> (Opsional)</span>
+					    	<input name="berkas" class="col-md-12" type="file">
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <a href="{{route('admin.artikel')}}" class="btn btn-danger">Kembali</a>
@@ -67,7 +70,7 @@
 @endsection
 @section('custom_script')
 <script>
-    var id_author = {{$load->author_id ?? 0}};
+    var id_author = {{$load->author_id ?? Auth::user()->id}};
     var id_departemen = {{$load->departemen_id ?? 0}};
     $(function(){
         $.ajax({
@@ -90,7 +93,7 @@
         });
 
         $.ajax({
-            url: "{{ url('/admin/user/json')}}",
+            url: "{{ url('/admin/user/find')}}/"+id_author,
             type: "GET",
             cache: false,
             dataType: 'json',
@@ -98,12 +101,7 @@
                 console.log(dataResult);
                 var resultData = dataResult.data;
                 $.each(resultData, function(index, row) {
-                    if(id_author == row.id)
-                    {
-                        $('#author_id').append('<option value="' + row.id + '" selected>' + row.name + '</option>');
-                    }else{
-                        $('#author_id').append('<option value="' + row.id + '">' + row.name + '</option>');
-                    }
+                    $('#author_id').append('<option value="' + row.id + '" selected>' + row.name + '</option>');
                 })
             }
         });

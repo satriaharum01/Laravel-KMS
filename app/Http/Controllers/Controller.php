@@ -37,6 +37,11 @@ class Controller extends BaseController
         Log::create($data);
     }
 
+    public function clear_lampiran($artikel_id)
+    {
+        Lampiran::where('artikel_id', $artikel_id)->destroy();
+    }
+
     public function lampiran_destroy($filename)
     {
         if (File::exists(public_path('/assets/uploads/' . $filename . ''))) {

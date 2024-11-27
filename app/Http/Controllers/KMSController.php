@@ -8,7 +8,6 @@ use App\Models\Komentar;
 use App\Models\Lampiran;
 use App\Models\Log;
 use App\Models\User;
-
 use Illuminate\Http\Request;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
@@ -63,6 +62,22 @@ class KMSController extends Controller
         ];
 
         KMS::create($data);
+        $file = $request->file('berkas');
+        if (isset($file)) {
+            $ext = '.' . $file->getClientOriginalExtension();
+            $filename = $request->judul . $ext;
+            $this->lampiran_destroy($filename);
+            $file->storeAs('/', $filename, ['disk' => 'file_upload']);
+
+            $get = KMS::select('*')->where('judul', $request->judul)->where('author_id', $request->author_id)->first();
+            $data = [
+                'artikel_id' => $get->id,
+                'file_path' => $filename
+            ];
+            $this->clear_lampiran($get->id);
+            Lampiran::create($data);
+        }
+
 
         return redirect(route('admin.artikel'));
     }
@@ -78,6 +93,23 @@ class KMSController extends Controller
         ];
 
         $rows->update($data);
+
+        $file = $request->file('berkas');
+        if (isset($file)) {
+            $ext = '.' . $file->getClientOriginalExtension();
+            $filename = $request->judul . $ext;
+            $this->lampiran_destroy($filename);
+            $file->storeAs('/', $filename, ['disk' => 'file_upload']);
+
+            $get = KMS::select('*')->where('judul', $request->judul)->where('author_id', $request->author_id)->first();
+            $data = [
+                'artikel_id' => $get->id,
+                'file_path' => $filename
+            ];
+            $this->clear_lampiran($get->id);
+            Lampiran::create($data);
+
+        }
 
         return redirect(route('admin.artikel'));
     }
@@ -95,11 +127,12 @@ class KMSController extends Controller
         $data = KMS::select('*')
             ->orderby('created_at', 'DESC')
             ->get();
-        foreach($data as $row) {
+        foreach ($data as $row) {
             $row->author = $row->cari_author->name;
             $row->tanggal = date('d ', strtotime($row->created_at)) . $this->bulan[date('n', strtotime($row->created_at))] .  date(' Y', strtotime($row->created_at));
             $row->komentar = Komentar::select('*')->where('artikel_id', $row->id)->count();
             $row->fill = $this->fill($row->author, $row->judul, $row->viewer, $row->komentar, $row->tanggal);
+            $lampiran = Lampiran::select('*')->where('artikel_id', $row->id)->get();
         }
 
         return Datatables::of($data)

@@ -131,7 +131,7 @@
                       <span class="nav-text">Komentar</span> 
                     </a>
                   </li>
-                  <li  class="has-sub {{ (request()->is('admin/lampiran')) ? 'active' : '' }} {{ (request()->is('admin/lampiran/*')) ? 'active' : '' }}" >
+                  <li  class="d-none has-sub {{ (request()->is('admin/lampiran')) ? 'active' : '' }} {{ (request()->is('admin/lampiran/*')) ? 'active' : '' }}" >
                     <a class="sidenav-item-link" href="{{route('admin.lampiran')}}"
                       aria-expanded="false" aria-controls="ui-elements">
                       <i class="mdi mdi-file"></i>
