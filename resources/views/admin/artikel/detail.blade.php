@@ -57,6 +57,14 @@
 					    	<label>Lampiran </label><span class="text-sm"> (Opsional)</span>
 					    	<input name="berkas" class="col-md-12" type="file">
                         </div>
+					    <div class="form-group">
+					    	<label>Status </label>
+					    	<select name="status" class="form-control" >
+                                <option value="Accepted">Diterima</option>
+                                <option value="Declined">Ditolak</option>
+                                <option value="Waiting">Menunggu</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <a href="{{route('admin.artikel')}}" class="btn btn-danger">Kembali</a>
@@ -72,7 +80,10 @@
 <script>
     var id_author = {{$load->author_id ?? Auth::user()->id}};
     var id_departemen = {{$load->departemen_id ?? 0}};
+    var select_default = "{{$load->status ?? 'Waiting'}}"
     $(function(){
+        jQuery("#compose-form select[name=status]").val(select_default);
+        
         $.ajax({
             url: "{{ url('/admin/departemen/json')}}",
             type: "GET",

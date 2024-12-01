@@ -58,7 +58,8 @@ class KMSController extends Controller
             'content' => $request->content,
             'author_id' => $request->author_id,
             'departemen_id' => $request->departemen_id,
-            'viewer' => 0
+            'viewer' => 0,
+            'status' => $request->status
         ];
 
         KMS::create($data);
@@ -89,7 +90,8 @@ class KMSController extends Controller
             'judul' => $request->judul,
             'content' => $request->content,
             'author_id' => $request->author_id,
-            'departemen_id' => $request->departemen_id
+            'departemen_id' => $request->departemen_id,
+            'status' => $request->status
         ];
 
         $rows->update($data);
@@ -131,7 +133,7 @@ class KMSController extends Controller
             $row->author = $row->cari_author->name;
             $row->tanggal = date('d ', strtotime($row->created_at)) . $this->bulan[date('n', strtotime($row->created_at))] .  date(' Y', strtotime($row->created_at));
             $row->komentar = Komentar::select('*')->where('artikel_id', $row->id)->count();
-            $row->fill = $this->fill($row->author, $row->judul, $row->viewer, $row->komentar, $row->tanggal);
+            $row->fill = $this->fill($row->author, $row->judul, $row->viewer, $row->komentar, $row->tanggal, $row->status);
             $lampiran = Lampiran::select('*')->where('artikel_id', $row->id)->get();
         }
 
@@ -147,9 +149,14 @@ class KMSController extends Controller
         return json_encode(array('data' => $data));
     }
 
-    public function fill($author, $judul, $viewer, $komentar, $tanggal)
+    public function fill($author, $judul, $viewer, $komentar, $tanggal, $status)
     {
-        $content = array($author,$judul,$viewer, $komentar, $tanggal);
+        $color = array(
+            'Accepted' => 'success',
+            'Waiting' => 'info',
+            'Declined' => 'danger'
+        );
+        $content = array($author,$judul,$viewer, $komentar, $tanggal,$status,$color[$status]);
 
         return $content;
     }

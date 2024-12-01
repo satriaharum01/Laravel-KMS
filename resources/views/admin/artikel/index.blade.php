@@ -67,7 +67,7 @@
                 },
                 {
                     data: 'fill', className:'text-left',render: function(data){
-                        return '<h4>'+data[1]+'</h4><br><div><i class="fa fa-user"></i> Dipost oleh '+data[0]+' <i class="fa fa-comment"></i> '+data[3]+' <i class="fa fa-eye"></i> '+data[2]+'  <i class="fa fa-calendar"></i> '+data[4]+'</div>';
+                        return '<h4>'+data[1]+'</h4><br><div><i class="fa fa-user"></i> Dipost oleh '+data[0]+' <i class="fa fa-comment"></i> '+data[3]+' <i class="fa fa-eye"></i> '+data[2]+'  <i class="fa fa-calendar"></i> '+data[4]+' <i class="fa fa-clipboard-list"></i>  <span class="text-'+data[6]+'">'+data[5]+'</span></div>';
                     }
                 },
                 {

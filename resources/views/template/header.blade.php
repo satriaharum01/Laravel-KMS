@@ -82,9 +82,9 @@
           <div id="sidebar" class="sidebar">
             <!-- Aplication Brand -->
             <div class="app-brand">
-              <a href="/index.html">
+              <a href="#">
                 
-                <img class="brand-icon" src="{{ asset('assets/img/favicon.png')}}" width="40" height="40">
+                <img class="brand-icon" src="{{ asset('assets/img/logo.png')}}" width="40" height="40">
                   <g fill="none" fill-rule="evenodd">
                     <path
                       class="logo-fill-blue"
@@ -94,7 +94,7 @@
                     <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                   </g>
                 </img>
-                <span class="brand-name">KMS</span>
+                <span class="brand-name text-center" style="line-height:25px;">KECAMATAN <br>MEDAN TEMBUNG</span>
               </a>
             </div>
             <!-- begin sidebar scrollbar -->

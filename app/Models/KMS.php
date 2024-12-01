@@ -10,7 +10,7 @@ class KMS extends Model
     use HasFactory;
     protected $table = 'knowledge_base';
     protected $primaryKey = 'id';
-    protected $fillable = ['judul','content','author_id','departemen_id','viewer'];
+    protected $fillable = ['judul','content','author_id','departemen_id','viewer','status'];
 
     public function cari_author()
     {

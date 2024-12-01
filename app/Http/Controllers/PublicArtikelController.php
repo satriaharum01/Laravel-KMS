@@ -43,7 +43,8 @@ class PublicArtikelController extends Controller
             'content' => $request->content,
             'author_id' => $request->author_id,
             'departemen_id' => $request->departemen_id,
-            'viewer' => 0
+            'viewer' => 0,
+            'status' => 'Waiting'
         ];
 
         KMS::create($data);
