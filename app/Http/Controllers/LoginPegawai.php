@@ -131,6 +131,15 @@ class LoginPegawai extends Controller
         return view($this->view, $this->data);
     }
 
+    public function my_diskusi()
+    {
+        $this->data['title'] = 'Diskusi Saya';
+        $this->page = '/pegawai/diskusi';
+        $this->view = 'pegawai/diskusi/data';
+        $this->data['page'] = $this->page;
+        return view($this->view, $this->data);
+    }
+
     public function diskusi_baca($id)
     {
         $load = Diskusi::find($id);
@@ -170,6 +179,23 @@ class LoginPegawai extends Controller
         $this->data['komentar'] = $komentar;
         $this->data['page'] = $this->page;
         return view($this->view, $this->data);
+    }
+
+    public function diskusi_baru()
+    {
+        $this->data['title'] = 'Tambah Diskusi';
+        $this->data['link'] = url('/pegawai/diskusi/store');
+        return view('pegawai.diskusi.detail', $this->data);
+    }
+
+    public function diskusi_edit($id)
+    {
+        $this->data['title'] = 'Edit Diskusi';
+        $this->data['link'] = url('/pegawai/diskusi/update/' . $id . '');
+        $this->data['load'] = Diskusi::find($id);
+
+        return view('pegawai.diskusi.detail', $this->data);
+
     }
 
     public function logs()

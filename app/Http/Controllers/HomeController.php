@@ -8,7 +8,6 @@ use App\Models\Komentar;
 use App\Models\Lampiran;
 use App\Models\Log;
 use App\Models\User;
-
 use Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -42,7 +41,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(isset(Auth::user()->id)) {
+        if (isset(Auth::user()->id)) {
             return redirect(route('admin.dashboard'));
         } else {
             return redirect(route('login'));
@@ -52,9 +51,20 @@ class HomeController extends Controller
     public function download($id)
     {
         $data = Lampiran::select('*')->where('artikel_id', $id)->first();
-        if(empty($data)) {
+        if (empty($data)) {
             return '<script>"alert("Lampiran tidak ditemukan !");history.back();"</script>';
         }
         return redirect(url('assets/uploads/'.$data->file_path));
+    }
+
+    public function get_departemen($id = 1)
+    {
+        $data = Departemen::select('*')
+            ->orderby('nama', 'ASC')
+            ->get();
+
+        return Datatables::of($data)
+            ->addIndexColumn()
+            ->make(true);
     }
 }

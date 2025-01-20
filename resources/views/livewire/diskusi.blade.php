@@ -54,6 +54,11 @@
                     </div>
                 </div>
             </div>
+            
+            @section('button')
+            <a class="btn btn-lg btn-block btn-success rounded-0 py-4 mb-1 bg-op-6 roboto-bold" href="{{route('pegawai.diskusi.new')}}">{{$side_title}}</a>
+            <a class="btn btn-lg btn-block btn-primary rounded-0 py-2 mb-3 bg-op-6 roboto-bold" href="{{route('pegawai.diskusi.list')}}">Diskusi Saya</a>
+            @endsection
             @include('template.statcounter')
         </div>
     </div>

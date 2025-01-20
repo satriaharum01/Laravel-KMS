@@ -84,42 +84,52 @@ Route::get('/admin/user/json', [App\Http\Controllers\UsersController::class, 'js
 Route::get('/pegawai/dashboard', [App\Http\Controllers\LoginPegawai::class, 'index'])->name('pegawai.dashboard');
 Route::get('/pegawai/artikel', [App\Http\Controllers\LoginPegawai::class, 'artikel'])->name('pegawai.artikel');
 Route::get('/pegawai/artikel/list', [App\Http\Controllers\LoginPegawai::class, 'my_artikel'])->name('pegawai.artikel.list');
+Route::get('/pegawai/diskusi/list', [App\Http\Controllers\LoginPegawai::class, 'my_diskusi'])->name('pegawai.diskusi.list');
 Route::get('/pegawai/diskusi', [App\Http\Controllers\LoginPegawai::class, 'diskusi'])->name('pegawai.diskusi');
 Route::get('/pegawai/logs', [App\Http\Controllers\LoginPegawai::class, 'logs'])->name('pegawai.logs');
 
 Route::get('/pegawai/artikel/add', [App\Http\Controllers\LoginPegawai::class, 'artikel_baru'])->name('pegawai.artikel.new');
 Route::get('/pegawai/artikel/show/{id}', [App\Http\Controllers\LoginPegawai::class, 'artikel_baca']);
 Route::get('/pegawai/artikel/edit/{id}', [App\Http\Controllers\LoginPegawai::class, 'artikel_edit']);
+Route::get('/pegawai/diskusi/add', [App\Http\Controllers\LoginPegawai::class, 'diskusi_baru'])->name('pegawai.diskusi.new');
+Route::get('/pegawai/diskusi/show/{id}', [App\Http\Controllers\LoginPegawai::class, 'diskusi_baca']);
+Route::get('/pegawai/diskusi/edit/{id}', [App\Http\Controllers\LoginPegawai::class, 'diskusi_edit']);
 
 Route::get('/pegawai/diskusi/show/{id}', [App\Http\Controllers\LoginPegawai::class, 'diskusi_baca']);
 
 //POST
 Route::POST('/pegawai/artikel/store', [App\Http\Controllers\PublicArtikelController::class, 'store']);
+Route::POST('/pegawai/diskusi/store', [App\Http\Controllers\PublicDiskusiController::class, 'store']);
 Route::POST('/pegawai/komentar/store', [App\Http\Controllers\PublicKomentarController::class, 'store']);
 Route::POST('/pegawai/notulen/store', [App\Http\Controllers\PublicNotulenController::class, 'store']);
 Route::POST('/pegawai/notulen/comment/store', [App\Http\Controllers\PublicResponseController::class, 'store']);
 
 //UPDATE
 Route::POST('/pegawai/artikel/update/{id}', [App\Http\Controllers\PublicArtikelController::class, 'update']);
+Route::POST('/pegawai/diskusi/update/{id}', [App\Http\Controllers\PublicDiskusiController::class, 'update']);
 Route::POST('/pegawai/komentar/update/{id}', [App\Http\Controllers\PublicKomentarController::class, 'update']);
 Route::POST('/pegawai/notulen/update/{id}', [App\Http\Controllers\PublicNotulenController::class, 'update']);
 Route::POST('/pegawai/notulen/comment/update/{id}', [App\Http\Controllers\PublicResponseController::class, 'update']);
 
 //DESTROY
 Route::GET('/pegawai/artikel/delete/{id}', [App\Http\Controllers\PublicArtikelController::class, 'destroy']);
+Route::GET('/pegawai/diskusi/delete/{id}', [App\Http\Controllers\PublicDiskusiController::class, 'destroy']);
 Route::POST('/pegawai/komentar/delete/{id}', [App\Http\Controllers\PublicKomentarController::class, 'destroy']);
 Route::POST('/pegawai/notulen/delete/{id}', [App\Http\Controllers\PublicNotulenController::class, 'destroy']);
 Route::POST('/pegawai/notulen/comment/delete/{id}', [App\Http\Controllers\PublicResponseController::class, 'destroy']);
 
 //JSON
 Route::get('/pegawai/artikel/json', [App\Http\Controllers\PublicArtikelController::class, 'json']);
+Route::get('/pegawai/diskusi/json', [App\Http\Controllers\PublicDiskusiController::class, 'json']);
 Route::get('/pegawai/logs/json', [App\Http\Controllers\PublicLogsController::class, 'json']);
 
 //FIND
 Route::get('/pegawai/artikel/find/{id}', [App\Http\Controllers\PublicArtikelController::class, 'find']);
+Route::get('/pegawai/diskusi/find/{id}', [App\Http\Controllers\PublicDiskusiController::class, 'find']);
 Route::get('/pegawai/komentar/find/{id}', [App\Http\Controllers\PublicKomentarController::class, 'find']);
 Route::get('/pegawai/notulen/find/{id}', [App\Http\Controllers\PublicNotulenController::class, 'find']);
 Route::get('/pegawai/notulen/comment/find/{id}', [App\Http\Controllers\PublicResponseController::class, 'find']);
 
 //JSON
 Route::get('/public/archive/download/{id}', [App\Http\Controllers\HomeController::class, 'download']);
+Route::get('/get/departemen/json', [App\Http\Controllers\HomeController::class, 'get_departemen']);

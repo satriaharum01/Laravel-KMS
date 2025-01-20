@@ -49,7 +49,7 @@ class Diskusilivewire extends Component
         $this->data['c_diskusi'] = $this->counter_diskusi();
         $this->data['c_user'] = $this->counter_user();
         $this->data['c_departemen'] = $this->counter_departemen();
-        $this->data['side_title'] = 'Buat Artikel';
+        $this->data['side_title'] = 'Buat Diskusi';
         return view('livewire.diskusi', $this->data);
     }
 
