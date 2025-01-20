@@ -57,6 +57,7 @@ class DiskusiController extends Controller
     public function store(Request $request)
     {
         $data = [
+            'status' => $request->status,
             'judul' => $request->judul,
             'keterangan' => $request->keterangan,
             'author_id' => $request->author_id,
@@ -73,6 +74,7 @@ class DiskusiController extends Controller
     {
         $rows = Diskusi::find($id);
         $data = [
+            'status' => $request->status,
             'judul' => $request->judul,
             'keterangan' => $request->keterangan,
             'author_id' => $request->author_id,

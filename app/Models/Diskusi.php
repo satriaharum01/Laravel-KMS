@@ -10,7 +10,7 @@ class Diskusi extends Model
     use HasFactory;
     protected $table = 'diskusi';
     protected $primaryKey = 'id';
-    protected $fillable = ['judul','keterangan','tanggal','author_id','departemen_id'];
+    protected $fillable = ['judul','keterangan','tanggal','author_id','departemen_id','status'];
 
     public function cari_author()
     {

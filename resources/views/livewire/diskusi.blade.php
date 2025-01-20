@@ -20,6 +20,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-9 mb-3 mb-sm-0">
                             <h5>
+                                <button type="button" class="btn btn-outline-{{$row->class}}">{{$row->status}}</button>
                                 <a href="{{url('pegawai/diskusi/show/'.$row->id)}}" class="text-primary">{{$row->judul}}</a>
                             </h5>
                             <p class="text-sm"><span class="op-6">Posted by</span> <a class="text-black"

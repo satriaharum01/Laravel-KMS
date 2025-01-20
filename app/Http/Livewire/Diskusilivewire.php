@@ -35,6 +35,7 @@ class Diskusilivewire extends Component
         })->orderBy('created_at', 'DESC')->Paginate(10);
 
         foreach ($load as $row) {
+            $row->class = ($row->status == "Open") ? 'success' : 'danger';
             $row->author = $row->cari_author->name;
             $row->time = date('h:', strtotime($row->tanggal)) . date('i', strtotime($row->tanggal));
             $row->tanggal = date('d ', strtotime($row->tanggal)) . $this->bulan[date('n', strtotime($row->tanggal))] .  date(' Y', strtotime($row->tanggal));

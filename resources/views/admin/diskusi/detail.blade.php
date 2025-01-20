@@ -28,6 +28,16 @@
                     @csrf
                     <div class="modal-body col-md-12 pb-0">
                         <div class="form-group">
+                            <label>Status</label>
+                            <select name="status" id="status" class="form-control">
+                                <option value="">-- Pilih Opsi</option>
+                                <option value="Open">Open</option>
+                                <option value="Close">Close</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-body col-md-12 pb-0">
+                        <div class="form-group">
                             <label>Judul</label>
                             <input type="text" name="judul" class="form-control" value="{{$load->judul ?? ''}}" placeholder="Tulis Judul.." required>
                         </div>
@@ -59,11 +69,11 @@
                     <div class="modal-body col-md-12">
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <textarea name="keterangan" class="form-control" placeholder="Tulis isi artikel disini.." required>{{$load->keterangan ?? ''}}</textarea>
+                            <textarea name="keterangan" class="form-control" placeholder="Tulis isi topic utama disikusi disini.." required>{{$load->keterangan ?? ''}}</textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="{{route('admin.artikel')}}" class="btn btn-danger">Kembali</a>
+                        <a href="{{route('admin.diskusi')}}" class="btn btn-danger">Kembali</a>
                         <button type="button" class="btn btn-primary btn-simpan">Simpan</button>
                     </div>
                 </form>
@@ -74,8 +84,11 @@
 @endsection
 @section('custom_script')
 <script>
+    var status = "{{$load->status ?? ""}}";
     var id_author = {{$load->author_id ?? 0}};
     var id_departemen = {{$load->departemen_id ?? 0}};
+
+    jQuery('#status').val(status).change();
     $(function(){
         $.ajax({
             url: "{{ url('/admin/departemen/json')}}",

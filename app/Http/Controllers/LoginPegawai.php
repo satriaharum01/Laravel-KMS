@@ -6,6 +6,7 @@ use App\Models\Departemen;
 use App\Models\Diskusi;
 use App\Models\KMS;
 use App\Models\Komentar;
+use App\Models\Response;
 use App\Models\Lampiran;
 use App\Models\Log;
 use App\Models\Notulen;
@@ -140,14 +141,23 @@ class LoginPegawai extends Controller
         $load = Diskusi::select('*')->where('id', $id)->get();
 
         foreach ($load as $row) {
+            $author_id = $row->author_id;
             $row->author = $row->cari_author->name;
             $row->notulen = Notulen::select('*')->where('diskusi_id', $row->id)->count();
+            $row->komentar = Response::select('*')->where('diskusi_id', $row->id)->count();
 
             $notulen = Notulen::select('*')->where('diskusi_id', $row->id)->get();
+            $komentar = Response::select('*')->where('diskusi_id', $row->id)->get();
 
             foreach ($notulen as $cek) {
                 $cek->judul = $cek->cari_diskusi->judul;
                 $cek->user = $cek->cari_author->name;
+                $cek->tanggal = date('d ', strtotime($cek->created_at)) . $this->bulan[date('n', strtotime($cek->created_at))] .  date(' Y', strtotime($cek->created_at));
+            }
+
+            foreach ($komentar as $cek) {
+                $cek->judul = $cek->cari_diskusi->judul;
+                $cek->user = $cek->cari_user->name;
                 $cek->tanggal = date('d ', strtotime($cek->created_at)) . $this->bulan[date('n', strtotime($cek->created_at))] .  date(' Y', strtotime($cek->created_at));
             }
         }
@@ -155,7 +165,9 @@ class LoginPegawai extends Controller
 
         $this->data['post'] = $load;
         $this->data['diskusi_id'] = $id;
+        $this->data['author_id'] = $author_id;
         $this->data['notulen'] = $notulen;
+        $this->data['komentar'] = $komentar;
         $this->data['page'] = $this->page;
         return view($this->view, $this->data);
     }

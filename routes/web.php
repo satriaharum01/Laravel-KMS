@@ -97,16 +97,19 @@ Route::get('/pegawai/diskusi/show/{id}', [App\Http\Controllers\LoginPegawai::cla
 Route::POST('/pegawai/artikel/store', [App\Http\Controllers\PublicArtikelController::class, 'store']);
 Route::POST('/pegawai/komentar/store', [App\Http\Controllers\PublicKomentarController::class, 'store']);
 Route::POST('/pegawai/notulen/store', [App\Http\Controllers\PublicNotulenController::class, 'store']);
+Route::POST('/pegawai/notulen/comment/store', [App\Http\Controllers\PublicResponseController::class, 'store']);
 
 //UPDATE
 Route::POST('/pegawai/artikel/update/{id}', [App\Http\Controllers\PublicArtikelController::class, 'update']);
 Route::POST('/pegawai/komentar/update/{id}', [App\Http\Controllers\PublicKomentarController::class, 'update']);
 Route::POST('/pegawai/notulen/update/{id}', [App\Http\Controllers\PublicNotulenController::class, 'update']);
+Route::POST('/pegawai/notulen/comment/update/{id}', [App\Http\Controllers\PublicResponseController::class, 'update']);
 
 //DESTROY
 Route::GET('/pegawai/artikel/delete/{id}', [App\Http\Controllers\PublicArtikelController::class, 'destroy']);
 Route::POST('/pegawai/komentar/delete/{id}', [App\Http\Controllers\PublicKomentarController::class, 'destroy']);
 Route::POST('/pegawai/notulen/delete/{id}', [App\Http\Controllers\PublicNotulenController::class, 'destroy']);
+Route::POST('/pegawai/notulen/comment/delete/{id}', [App\Http\Controllers\PublicResponseController::class, 'destroy']);
 
 //JSON
 Route::get('/pegawai/artikel/json', [App\Http\Controllers\PublicArtikelController::class, 'json']);
@@ -116,6 +119,7 @@ Route::get('/pegawai/logs/json', [App\Http\Controllers\PublicLogsController::cla
 Route::get('/pegawai/artikel/find/{id}', [App\Http\Controllers\PublicArtikelController::class, 'find']);
 Route::get('/pegawai/komentar/find/{id}', [App\Http\Controllers\PublicKomentarController::class, 'find']);
 Route::get('/pegawai/notulen/find/{id}', [App\Http\Controllers\PublicNotulenController::class, 'find']);
+Route::get('/pegawai/notulen/comment/find/{id}', [App\Http\Controllers\PublicResponseController::class, 'find']);
 
 //JSON
 Route::get('/public/archive/download/{id}', [App\Http\Controllers\HomeController::class, 'download']);
