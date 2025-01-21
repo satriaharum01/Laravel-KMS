@@ -39,7 +39,7 @@ class Controller extends BaseController
 
     public function clear_lampiran($artikel_id)
     {
-        Lampiran::where('artikel_id', $artikel_id)->destroy();
+        Lampiran::where('artikel_id', $artikel_id)->get()->destroy();
     }
 
     public function lampiran_destroy($filename)
